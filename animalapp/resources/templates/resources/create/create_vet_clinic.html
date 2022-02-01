@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "../head.html" %}
+    </head>
+
+    <body>
+        {% include "../menus.html" %}
+
+        <div id="title">Kliniki weterynaryjne</div>
+
+        <div id="content" style="clear:both;">
+            <form action="/resources/clinics/add/" method="post">
+                {% csrf_token %}
+
+                {{form}}
+
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+
+    </body>
+</html>

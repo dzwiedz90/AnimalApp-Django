@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "../head.html" %}
+    </head>
+
+    <body>
+        <div id="logo">AnimalApp Zwierzęta</div>
+        <div class="button"><a href="/animals/">Zwierzęta główna</a></div>
+
+
+        <div id="content" style="clear:both;">
+            <form action="/animals/add/" method="post">
+                {% csrf_token %}
+
+                <label for="id_animal_name">Imię:</label>
+                <input type="text" name="animal_name" maxlength="64" required id="id_animal_name"></br></br>
+
+                <label for="id_species">Gatunek:</label>
+                <input type="text" name="species" maxlength="64" required id="id_species"></br></br>
+
+                <label for="id_breed">Rasa:</label>
+                <input type="text" name="breed" maxlength="128" required id="id_breed"></br></br>
+
+                <label for="id_gender">Płeć:</label>
+                <select name="gender" id="id_gender">
+                    <option value="ML" selected>samiec</option>
+                    <option value="FM">samica</option>
+                </select></br></br>
+
+                <label for="id_date_born">Data urodzenia:</label>
+                <input type="text" name="date_born" required id="id_date_born"></br></br>
+
+                <label for="id_current_weight">Waga:</label>
+                <input type="number" name="current_weight" step="any" required id="id_current_weight"></br></br>
+
+                <label for="id_fur_ointment">Maść:</label>
+                <input type="text" name="fur_ointment" maxlength="32" required id="id_fur_ointment"></br></br>
+
+                <label for="id_is_archived">Zarchiwizowany?</label>
+                <input type="checkbox" name="is_archived" id="id_is_archived"></br></br>
+
+                <label for="id_photo">Zdjęcie (opcjonalne):</label>
+                <input type="file" name="photo" accept="image/*" id="id_photo"></br></br></br>
+
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+    </body>
+</html>

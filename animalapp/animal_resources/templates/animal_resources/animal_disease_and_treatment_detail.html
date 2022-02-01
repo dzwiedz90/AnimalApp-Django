@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/treatments/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/treatments/modify">Modyfikuj</a></div>
+
+        <div id="title">Zabiegi i choroby</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if treatments_list %}
+                <ul>
+                    {% for treatment in treatments_list %}
+                    <li>Imie zwierzęcia: {{treatment.animal.animal_name}}</br>
+                        Nazwa zabiegu lub choroby: {{treatment.treatment_and_disease.treatment_and_disease_name}}</br>
+                        Nazwa kliniki: {{treatment.vet_clinic.vet_clinic_name}}</br>
+                        Data wystąpienia: {{treatment.date_occurred}}</br>
+                        Data zakończenia: {{treatment.date_treated}}</br>
+                        Podane leki: {{treatment.meds_given}}</br>
+                        Koszt leczenia: {{treatment.treatment_cost}}</br>
+                        Opis: {{treatment.description}}</br>
+                        Satysfakcja z leczenia: {{treatment.satisfaction}}</br>
+                        Lekarz prowadzący: {{treatment.doctor}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No treatments are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/dewormings/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/dewormings/modify">Modyfikuj</a></div>
+
+        <div id="title">Odrobaczenia</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if dewormings_list %}
+                <ul>
+                    {% for deworming in dewormings_list %}
+                    <li>Imie zwierzęcia: {{deworming.animal.animal_name}}</br>
+                        Data odrobaczenia: {{deworming.deworming_date}}</br>
+                        Data ważności: {{deworming.deworming_expiration_date}}</br>
+                        Nazwa środka: {{deworming.deworming_remedy.deworming_remedy_name}}</br>
+                        Opis: {{deworming.deworming_remedy.description}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No dewormings are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

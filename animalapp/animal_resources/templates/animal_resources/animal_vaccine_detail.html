@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/vaccines/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/vaccines/modify">Modyfikuj</a></div>
+
+        <div id="title">Szczepienia</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if vaccines_list %}
+                <ul>
+                    {% for vaccine in vaccines_list %}
+                    <li>Imie zwierzęcia: {{vaccine.animal.animal_name}}</br>
+                        Data szczepienia: {{vaccine.date_of_vaccination}}</br>
+                        Data ważności: {{vaccine.date_of_expiration}}</br>
+                        Nazwa szczepionki: {{vaccine.vaccine.vaccine_name}}</br>
+                        Opis: {{vaccine.vaccine.description}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No vaccines are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

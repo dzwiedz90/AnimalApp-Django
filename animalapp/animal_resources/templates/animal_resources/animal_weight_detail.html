@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/weight/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/weight/modify">Modyfikuj</a></div>
+
+        <div id="title">Pomiary wagi</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if weight_list %}
+                <ul>
+                    {% for weight in weight_list %}
+                    <li>Imie zwierzęcia: {{weight.animal.animal_name}}</br>
+                        Data pomiaru: {{weight.date_of_measurement}}</br>
+                        Waga: {{weight.weight}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No remedies for ticks are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

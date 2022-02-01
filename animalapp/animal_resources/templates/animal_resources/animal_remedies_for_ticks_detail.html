@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/ticks/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/ticks/modify">Modyfikuj</a></div>
+
+        <div id="title">Środki na kleszcze</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if ticks_list %}
+                <ul>
+                    {% for tick in ticks_list %}
+                    <li>Imie zwierzęcia: {{tick.animal.animal_name}}</br>
+                        Środek na kleszcze: {{tick.remedy_for_ticks.remedy_for_ticks_name}}</br>
+                        Data aplikacji: {{tick.application_date}}</br>
+                        Data ważności: {{tick.expiration_date}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No remedies for ticks are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

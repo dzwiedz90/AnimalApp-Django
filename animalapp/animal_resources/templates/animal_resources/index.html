@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+         <div id="logo">AnimalApp Zwierzęta <img src="/media/logo.png" style="with: 35px; height: 35px;"></div>
+        <div>
+            <div class="button"><a href="/">Główna</a></div>
+        </div>
+        <div class="button"><a href="/animals/add">Dodaj zwierzę</a></div>
+
+        {% if animals_list %}
+            <ul>
+                {% for animal in animals_list %}
+                    <li><a href="/animals/{{animal.id}}/animal">{{animal.animal_name}}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No animals are available.</p>
+        {% endif %}
+    </body>
+</html>

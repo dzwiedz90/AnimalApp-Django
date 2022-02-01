@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/dewormings/add/">Dodaj</a></div>
+
+        <div id="title">Środki na odrobaczenie</div>
+
+        <div id="content" style="clear:both;">
+            {% if deworming_remedies_list %}
+                <ul>
+                    {% for deworming in deworming_remedies_list %}
+                    <li><a href="/resources/dewormings/{{deworming.id}}">{{deworming.deworming_remedy_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No deworming remedies are available.</p>
+            {% endif %}
+        </div>
+
+    </body>
+</html>

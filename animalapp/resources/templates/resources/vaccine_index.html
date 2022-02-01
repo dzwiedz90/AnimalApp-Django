@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/vaccines/add/">Dodaj</a></div>
+
+        <div id="title">Szczepionki</div>
+
+        <div id="content" style="clear:both;">
+            {% if vaccines_list %}
+                <ul>
+                    {% for vaccine in vaccines_list %}
+                    <li><a href="/resources/vaccines/{{vaccine.id}}">{{vaccine.vaccine_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No vaccines are available.</p>
+            {% endif %}
+        </div>
+
+    </body>
+</html>

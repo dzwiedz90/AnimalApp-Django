@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/ticks/add/">Dodaj</a></div>
+
+        <div id="title">Środki na kleszcze</div>
+
+        <div id="content" style="clear:both;">
+            {% if remedy_for_ticks_list %}
+                <ul>
+                    {% for remedy in remedy_for_ticks_list %}
+                    <li><a href="/resources/ticks/{{remedy.id}}">{{remedy.remedy_for_ticks_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No remedies for ticks are available.</p>
+            {% endif %}
+        </div>
+
+    </body>
+</html>

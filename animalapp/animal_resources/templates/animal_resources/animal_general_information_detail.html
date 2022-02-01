@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/information/add">Dodaj</a></div>
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/information/modify">Modyfikuj</a></div>
+
+        <div id="title">Informacje ogólne</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if information_list %}
+                <ul>
+                    {% for information in information_list %}
+                    <li>Imie zwierzęcia: {{information.animal.animal_name}}</br>
+                        Opis: {{information.content}}</br>
+                    </li></br>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No general information are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+    </body>
+</html>

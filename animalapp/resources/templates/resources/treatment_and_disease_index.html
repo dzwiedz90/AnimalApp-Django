@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/treatments/add/">Dodaj</a></div>
+
+        <div id="title">Choroby i zabiegi</div>
+
+        <div id="content" style="clear:both;">
+            {% if treatments_list %}
+                <ul>
+                    {% for treatment in treatments_list %}
+                    <li><a href="/resources/treatments/{{treatment.id}}">{{treatment.treatment_and_disease_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No treatments or diseases are available.</p>
+            {% endif %}
+        </div>
+
+    </body>
+</html>

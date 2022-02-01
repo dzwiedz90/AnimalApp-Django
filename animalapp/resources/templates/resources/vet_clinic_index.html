@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/clinics/add/">Dodaj</a></div>
+
+        <div id="title">Kliniki weterynaryjne</div>
+
+        <div id="content" style="clear:both;">
+            {% if vet_clinic_list %}
+                <ul>
+                    {% for clinic in vet_clinic_list %}
+                    <li><a href="/resources/clinics/{{clinic.id}}">{{clinic.vet_clinic_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No deworming remedies are available.</p>
+            {% endif %}
+        </div>
+
+    </body>
+</html>

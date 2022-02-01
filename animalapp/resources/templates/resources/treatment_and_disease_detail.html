@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/treatments/add/">Dodaj</a></div>
+
+        <div id="title">Choroby i zabiegi</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if treatments_list %}
+                <ul>
+                    {% for treatment in treatments_list %}
+                        Nazwa środka: {{treatment.treatment_and_disease_name}}</br>
+                        Opis: {{treatment.description}}
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No treatments or diseases are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+        <div class="button"><a href="/animals/{{view.kwargs.pk}}/animal/modify">Modyfikuj</a></div>
+
+        <div id="title">Profil zwierzęcia</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                <legend><h1>{{animal.animal_name}}</h1></legend>
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <img src="http://localhost:8000/media/{{animal.photo}}" width="10%" height="10%"></br>
+                Gatunek: {{animal.species}}</br>
+                Rasa: {{animal.breed}}</br>
+                Płeć: {% if animal.gender == "ML" %}
+                samiec</br>
+                {% else %}
+                samica</br>
+                {% endif %}
+                Data urodzenia: {{animal.date_born}}</br>
+                Data śmierci: {{animal.date_died}}</br>
+                Waga: {{animal.current_weight}}</br>
+                Maść: {{animal.fur_ointment}}</br>
+                Czy zarchiwizowany: {{animal.is_archived}}</br>
+            </fieldset>
+        </div>
+    </body>
+</html>

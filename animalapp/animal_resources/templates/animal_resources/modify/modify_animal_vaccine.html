@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "../head.html" %}
+    </head>
+
+    <body>
+        {% include "../menus_for_create_modify.html" %}
+
+        <h3>Daty podawać w formacie:<p style="color: red;">RRRR-MM-DD GG:MM:SS</p></h3>
+
+        <div id="content" style="clear:both;">
+            <form action="/animals/{{pk}}/vaccines/modify/" method="post">
+                {% csrf_token %}
+
+                {{form}}
+
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+    </body>
+</html>

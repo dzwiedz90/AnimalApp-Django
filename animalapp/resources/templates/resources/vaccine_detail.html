@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/vaccines/add/">Dodaj</a></div>
+
+        <div id="title">Szczepionki</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if vaccines_list %}
+                <ul>
+                    {% for vaccine in vaccines_list %}
+                        Nazwa szczepionki: {{vaccine.vaccine_name}}</br>
+                        Opis: {{vaccine.description}}
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No vaccines are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "./head.html" %}
+    </head>
+
+    <body>
+        {% include "./menus.html" %}
+
+        <div class="button"><a href="/resources/clinics/add/">Dodaj</a></div>
+
+        <div id="title">Kliniki weterynaryjne</div>
+
+        <div id="content" style="clear:both;">
+            <fieldset>
+                {% if vet_clinics_list %}
+                <ul>
+                    {% for clinic in vet_clinics_list %}
+                        Nazwa kliniki: {{clinic.vet_clinic_name}}</br>
+                        Adres: {{clinic.address}}</br>
+                        Numer telefonu: {{clinic.phone_number}}</br>
+                        Godziny otwarcia: {{clinic.opening_hours}}
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No vaccines are available.</p>
+                {% endif %}
+            </fieldset>
+        </div>
+
+    </body>
+</html>

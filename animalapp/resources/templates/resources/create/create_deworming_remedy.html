@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="pl">
+    <head>
+        {% include "../head.html" %}
+    </head>
+
+    <body>
+        {% include "../menus.html" %}
+
+        <div id="title">Środki na odrobaczenie</div>
+
+        <div id="content" style="clear:both;">
+            <form action="/resources/dewormings/add/" method="post">
+                {% csrf_token %}
+
+                {{form}}
+
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+
+    </body>
+</html>
