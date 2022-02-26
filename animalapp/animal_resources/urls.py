@@ -27,7 +27,7 @@ urlpatterns = [
          name='add_animal_general_information'),
 
     path('<int:pk>/animal/modify/', views.update_animal, name='animal_detail'),
-    path('<int:pk>/dewormings/modify/', views.update_animal_deworming, name='modify_animal_deworming'),
+    path('<int:pk>/dewormings/modify/<int:id>/', views.update_animal_deworming, name='modify_animal_deworming'),
     path('<int:pk>/treatments/modify/', views.update_animal_treatment, name='modify_animal_disease_and_treatment'),
     path('<int:pk>/ticks/modify/', views.update_animal_remedy_for_ticks, name='modify_animal_remedies_for_ticks'),
     path('<int:pk>/vaccines/modify/', views.update_animal_vaccine, name='modify_animal_vaccine'),

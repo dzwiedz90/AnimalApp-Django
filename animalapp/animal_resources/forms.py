@@ -13,7 +13,7 @@ class AnimalForm(ModelForm):
 class AnimalDewormingForm(ModelForm):
     class Meta:
         model = AnimalDeworming
-        fields = ['animal', 'deworming_date', 'deworming_expiration_date', 'deworming_remedy']
+        fields = ['animal', 'id', 'deworming_date', 'deworming_expiration_date', 'deworming_remedy']
 
 
 class AnimalTreatmentAndDiseaseForm(ModelForm):

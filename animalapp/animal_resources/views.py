@@ -1,7 +1,7 @@
 import pdb
 
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
 from .models import Animal, AnimalDeworming, AnimalTreatmentAndDisease, AnimalRemedyForTicks, AnimalVaccine, \
@@ -182,7 +182,8 @@ def create_animal_general_information(request, pk):
 
 def update_animal(request, pk):
     if request.method == 'POST':
-        form = AnimalForm(request.POST)
+        instance = get_object_or_404(Animal, pk=pk)
+        form = AnimalForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save(request.POST)
             return HttpResponseRedirect('/animals/' + str(pk) + '/animal/')
@@ -190,12 +191,15 @@ def update_animal(request, pk):
             return HttpResponse(content='Niepoprawne dane', status=400)
     else:
         form = AnimalForm()
-    return render(request, 'animal_resources/modify/modify_animal.html', {'form': form, 'pk': pk})
+        animal = Animal.objects.get(pk=pk)
+    return render(request, 'animal_resources/modify/modify_animal.html', {'form': form, 'pk': pk, 'animal': animal})
 
 
-def update_animal_deworming(request, pk):
+# TODO below are to be corrected and tested (also need to change templates)
+def update_animal_deworming(request, pk, id):
     if request.method == 'POST':
-        form = AnimalDewormingForm(request.POST)
+        instance = get_object_or_404(AnimalDeworming, id=id)
+        form = AnimalDewormingForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save(request.POST)
             return HttpResponseRedirect('/animals/' + str(pk) + '/dewormings/')
@@ -203,7 +207,9 @@ def update_animal_deworming(request, pk):
             return HttpResponse(content='Niepoprawne dane', status=400)
     else:
         form = AnimalDewormingForm()
-    return render(request, 'animal_resources/modify/modify_animal_deworming.html', {'form': form, 'pk': pk})
+        deworming = AnimalDeworming.objects.get(id=id)
+    return render(request, 'animal_resources/modify/modify_animal_deworming.html',
+                  {'form': form, 'pk': pk, 'id': id, 'deworming': deworming})
 
 
 def update_animal_treatment(request, pk):
